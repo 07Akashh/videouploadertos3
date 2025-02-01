@@ -1,8 +1,12 @@
+import { ToastContainer } from 'react-toastify';
 import './App.css';
 import VideoUploader from './component/VideoUploader'
 function App() {
   return (
-    <VideoUploader />
+    <>
+      <ToastContainer />
+      <VideoUploader />
+    </>
   );
 }
 

@@ -18,12 +18,8 @@ export async function uploadVideoResource(token, video, thumbnail, videoData) {
             extension: getFileExtension(thumbnail)
         }], { headers: { Authorization: `Bearer ${token}` } });
 
-        const { url: videoUploadUrl, key: videoKey } = videoUploadResponse.data.data;
-        const { url: thumbnailUploadUrl, key: thumbnailKey } = thumbnailUploadResponse.data.data[0];
-
-
-        console.log(videoUploadUrl,);
-        console.log('ewfewfwe',thumbnailUploadUrl);
+        const { url: videoUploadUrl, keyPrefix: videoKey } = videoUploadResponse.data.data;
+        const { url: thumbnailUploadUrl, keyPrefix: thumbnailKey } = thumbnailUploadResponse.data.data[0];
 
         let videoUploaded = false;
         let thumbnailUploaded = false;
@@ -66,7 +62,6 @@ export async function uploadVideoResource(token, video, thumbnail, videoData) {
             toast.error("❌ Both video and thumbnail upload failed.");
         }
     
-
         await axios.post(`${baseUrl}/v1/video`, [{
             title: videoData.title,
             thumbnailKey,
